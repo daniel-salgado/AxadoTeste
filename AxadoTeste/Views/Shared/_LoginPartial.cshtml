@@ -1,0 +1,26 @@
+﻿
+
+@if (Session["id_User"] != null)
+{
+    using (Html.BeginForm("LogOut", "Login", null))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Hello " + @Session["UserName"], "Edit", "User",  @Session["id_User"].ToString() )    </li>
+          
+            <li>
+                @Html.ActionLink("LogOff", "LogOut", "Login")
+
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Create", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+
+        <li>@Html.ActionLink("Log in", "Index", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
